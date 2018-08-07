@@ -200,7 +200,11 @@ var parseASCIIArt = function(string) {
     var m, n, ref2, ref3;
     for (y = m = 0, ref2 = height; 0 <= ref2 ? m < ref2 : m > ref2; y = 0 <= ref2 ? ++m : --m) {
       for (x = n = 0, ref3 = width; 0 <= ref3 ? n < ref3 : n > ref3; x = 0 <= ref3 ? ++n : --n) {
-        if (data[y][x] === '|' || data[y][x] === '-') {
+        if ((data[y][x] === '|' || data[y][x] === '-')
+             && (isPartOfLine(x, y - 1) || isLineEnding(x, y - 1)
+                || isPartOfLine(x, y + 1) || isLineEnding(x, y + 1)
+                || isPartOfLine(x - 1, y) || isLineEnding(x - 1, y)
+                || isPartOfLine(x + 1, y) || isLineEnding(x + 1, y))) {
           return new Point(x, y);
         }
       }
