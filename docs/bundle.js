@@ -1,6 +1,6 @@
 var slice = [].slice;
 
-var FONT = "20pt 'Source Code Pro'";
+var FONT = "20pt 'Source Code Pro' '微軟正黑體'";
 
 var ShakyCanvas = function(canvas) {
   this.ctx = canvas.getContext('2d');
