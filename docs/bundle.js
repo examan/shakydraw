@@ -395,21 +395,9 @@ var drawDiagram = function() {
 var textarea = $('textarea');
 
 textarea.addEventListener('change', function() {
-  ga('send', {
-    hitType: 'event',
-    eventCategory: 'general',
-    eventAction: 'click',
-    eventLabel: 'redraw'
-  });
   drawDiagram();
 });
 textarea.addEventListener('keyup', function() {
-  ga('send', {
-    hitType: 'event',
-    eventCategory: 'general',
-    eventAction: 'click',
-    eventLabel: 'redraw'
-  });
   drawDiagram();
 });
 doc.addEventListener('DOMContentLoaded', drawDiagram, false);
@@ -423,12 +411,6 @@ else
   setTimeout(drawDiagram, 2000); // Things you need to do for Edge and IE :(
 
 $('download').addEventListener('click', function() {
-  ga('send', {
-    hitType: 'event',
-    eventCategory: 'general',
-    eventAction: 'click',
-    eventLabel: 'download'
-  });
   var dataURL = $('canvas').toDataURL('image/png');
   $('download').href = dataURL;
 }, false);
@@ -436,11 +418,5 @@ $('close').addEventListener('click', function() {
   $('overlay').style['display'] = 'none';
 }, false);
 $('about').addEventListener('click', function() {
-  ga('send', {
-    hitType: 'event',
-    eventCategory: 'general',
-    eventAction: 'click',
-    eventLabel: 'about'
-  });
   $('overlay').style['display'] = 'block';
 }, false);
