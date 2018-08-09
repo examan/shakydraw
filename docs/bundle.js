@@ -153,8 +153,8 @@ var Text = function(x01, y01, text1, color1) {
 
 Text.prototype.draw = function(ctx, cb) {
   ctx.setFillStyle(this.color);
-  return ctx.fillText(this.text, X(this.x0), Y(this.y0));
   cb(this.x0 + ctx.measureText(this.text).width, this.y0 + 20 * factor);
+  return ctx.fillText(this.text, X(this.x0), Y(this.y0));
 };
 
 var parseASCIIArt = function(string) {
