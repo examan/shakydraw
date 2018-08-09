@@ -387,8 +387,8 @@ var drawDiagram = function() {
     }
   }
   canvas = $('canvas');
-  canvas.width = width;
-  canvas.height = height;
+  canvas.width = width * 2;
+  canvas.height = height * 2;
   ctx = new ShakyCanvas(canvas);
   results = [];
   for (k = 0, len1 = figures.length; k < len1; k++) {
