@@ -47,7 +47,7 @@ ShakyCanvas.prototype.bulb = function(x0, y0) {
   results = [];
   for (i = j = 0; j <= 2; i = ++j) {
     this.beginPath();
-    this.ctx.arc(x0 + fuzziness(), y0 + fuzziness(), 5, 0, Math.PI * 2, true);
+    this.ctx.arc(x0 + fuzziness(), y0 + fuzziness(), 5 * factor, 0, Math.PI * 2, true);
     this.ctx.closePath();
     results.push(this.ctx.fill());
   }
