@@ -379,7 +379,7 @@ var drawDiagram = function() {
   figures = parseASCIIArt($('textarea').value);
   width = 0;
   height = 0;
-  var temp_canvas = ShakyCanvas($('canvas'));
+  var temp_canvas = new ShakyCanvas($('canvas'));
   for (j = 0, len = figures.length; j < len; j++) {
     figure = figures[j];
     if (figure.constructor.name === 'Line') {
