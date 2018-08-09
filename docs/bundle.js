@@ -1,6 +1,6 @@
 var slice = [].slice;
 
-var factor = 2;
+var factor = 8;
 
 var FONT = `${20 * factor}pt 'Source Code Pro','Microsoft JhengHei'`;
 
