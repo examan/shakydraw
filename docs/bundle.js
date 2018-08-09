@@ -1,10 +1,12 @@
 var slice = [].slice;
 
-var FONT = "20pt 'Source Code Pro','Microsoft JhengHei'";
+var factor = 1;
+
+var FONT = `${20 * factor}pt 'Source Code Pro','Microsoft JhengHei'`;
 
 var ShakyCanvas = function(canvas) {
   this.ctx = canvas.getContext('2d');
-  this.ctx.lineWidth = 3;
+  this.ctx.lineWidth = 3 * factor;
   this.ctx.font = FONT;
   this.ctx.textBaseline = 'middle';
 }
@@ -59,14 +61,14 @@ ShakyCanvas.prototype.arrowhead = function(x0, y0, x1, y1) {
   alpha = dy === 0 ? dx < 0 ? -Math.PI : 0 : Math.atan(dy / dx);
   alpha3 = alpha + 0.5;
   alpha4 = alpha - 0.5;
-  l3 = 20;
+  l3 = 20 * factor;
   x3 = x1 + l3 * Math.cos(alpha3);
   y3 = y1 + l3 * Math.sin(alpha3);
   this.beginPath();
   this.moveTo(x3, y3);
   this.lineTo(x1, y1);
   this.stroke();
-  l4 = 20;
+  l4 = 20 * factor;
   x4 = x1 + l4 * Math.cos(alpha4);
   y4 = y1 + l4 * Math.sin(alpha4);
   this.beginPath();
@@ -97,7 +99,7 @@ ShakyCanvas.prototype.fillText = function() {
   return (ref = this.ctx).fillText.apply(ref, args);
 };
 
-var CELL_SIZE = 15;
+var CELL_SIZE = 15 * factor;
 
 var X = function(x) {
   return x * CELL_SIZE + (CELL_SIZE / 2);
