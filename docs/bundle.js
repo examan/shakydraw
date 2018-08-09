@@ -379,10 +379,11 @@ var drawDiagram = function() {
   figures = parseASCIIArt($('textarea').value);
   width = 0;
   height = 0;
+  var temp_canvas = ShakyCanvas($('canvas'));
   for (j = 0, len = figures.length; j < len; j++) {
     figure = figures[j];
     if (figure.constructor.name === 'Line') {
-      width = Math.max(width, X(figure.x1 + 1), $('canvas').getContext('2d').measureText(textarea.value).width);
+      width = Math.max(width, X(figure.x1 + 1), temp_canvas.ctx.measureText(textarea.value).width);
       height = Math.max(height, Y(figure.y1 + 1), textarea.value.split('\n').length * 20 * factor);
     }
   }
