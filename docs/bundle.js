@@ -124,7 +124,7 @@ var Line = function(x01, y01, start1, x11, y11, end1, color1) {
   this.color = color1;
 }
 
-Line.prototype.draw = function(ctx) {
+Line.prototype.draw = function(ctx, cb) {
   ctx.setStrokeStyle(this.color);
   ctx.setFillStyle(this.color);
   ctx.beginPath();
@@ -151,9 +151,10 @@ var Text = function(x01, y01, text1, color1) {
   this.color = color1;
 }
 
-Text.prototype.draw = function(ctx) {
+Text.prototype.draw = function(ctx, cb) {
   ctx.setFillStyle(this.color);
   return ctx.fillText(this.text, X(this.x0), Y(this.y0));
+  cb(this.x0 + ctx.measureText(this.text).width, this.y0 + 20 * factor);
 };
 
 var parseASCIIArt = function(string) {
@@ -393,7 +394,10 @@ var drawDiagram = function() {
   results = [];
   for (k = 0, len1 = figures.length; k < len1; k++) {
     figure = figures[k];
-    results.push(figure.draw(ctx));
+    results.push(figure.draw(ctx, function(x, y){
+      canvas.width = Math.max(canvas.width, x);
+      canvas.height = Math.max(canvas.height, y);
+    }));
   }
   return results;
 };
