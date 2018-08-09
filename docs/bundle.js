@@ -383,7 +383,7 @@ var drawDiagram = function() {
   for (j = 0, len = figures.length; j < len; j++) {
     figure = figures[j];
     if (figure.constructor.name === 'Line') {
-      width = Math.max(width, X(figure.x1 + 1), temp_canvas.ctx.measureText(textarea.value).width);
+      width = Math.max(width, X(figure.x1 + 1), Math.max(...textarea.value.split('\n').map(function(l){temp_canvas.ctx.measureText(l).width})));
       height = Math.max(height, Y(figure.y1 + 1), textarea.value.split('\n').length * 20 * factor);
     }
   }
