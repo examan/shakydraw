@@ -380,11 +380,13 @@ var drawDiagram = function() {
   width = 0;
   height = 0;
   var temp_canvas = new ShakyCanvas($('canvas'));
+  width = Math.max(...(textarea.value.split('\n').map(function(l){return temp_canvas.ctx.measureText(l).width;})));
+  height = textarea.value.split('\n').length * 20 * factor;
   for (j = 0, len = figures.length; j < len; j++) {
     figure = figures[j];
     if (figure.constructor.name === 'Line') {
-      width = Math.max(width, X(figure.x1 + 1), Math.max(...textarea.value.split('\n').map(function(l){temp_canvas.ctx.measureText(l).width})));
-      height = Math.max(height, Y(figure.y1 + 1), textarea.value.split('\n').length * 20 * factor);
+      width = Math.max(width, X(figure.x1 + 1), maxWidth);
+      height = Math.max(height, Y(figure.y1 + 1), maxHeight);
     }
   }
   canvas = $('canvas');
