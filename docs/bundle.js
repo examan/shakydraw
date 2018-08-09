@@ -385,8 +385,8 @@ var drawDiagram = function() {
   for (j = 0, len = figures.length; j < len; j++) {
     figure = figures[j];
     if (figure.constructor.name === 'Line') {
-      width = Math.max(width, X(figure.x1 + 1), maxWidth);
-      height = Math.max(height, Y(figure.y1 + 1), maxHeight);
+      width = Math.max(width, X(figure.x1 + 1), width);
+      height = Math.max(height, Y(figure.y1 + 1), height);
     }
   }
   canvas = $('canvas');
