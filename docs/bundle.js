@@ -151,9 +151,8 @@ var Text = function(x01, y01, text1, color1) {
   this.color = color1;
 }
 
-Text.prototype.draw = function(ctx, cb) {
+Text.prototype.draw = function(ctx) {
   ctx.setFillStyle(this.color);
-  cb(this.x0 + ctx.ctx.measureText(this.text).width, this.y0 + 20 * factor);
   return ctx.fillText(this.text, X(this.x0), Y(this.y0));
 };
 
@@ -383,8 +382,8 @@ var drawDiagram = function() {
   for (j = 0, len = figures.length; j < len; j++) {
     figure = figures[j];
     if (figure.constructor.name === 'Line') {
-      width = Math.max(width, X(figure.x1 + 1));
-      height = Math.max(height, Y(figure.y1 + 1));
+      width = Math.max(width, X(figure.x1 + 1), $('canvas').getContext('2d').measureText(textarea.value).width);
+      height = Math.max(height, Y(figure.y1 + 1), textarea.value.split('\n').length * 20 * factor);
     }
   }
   canvas = $('canvas');
@@ -394,10 +393,7 @@ var drawDiagram = function() {
   results = [];
   for (k = 0, len1 = figures.length; k < len1; k++) {
     figure = figures[k];
-    results.push(figure.draw(ctx, function(x, y){
-      canvas.width = Math.max(canvas.width, x);
-      canvas.height = Math.max(canvas.height, y);
-    }));
+    results.push(figure.draw(ctx));
   }
   return results;
 };
